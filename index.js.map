@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/js/pixabay-api.js"],"sourcesContent":["import axios from \"axios\";\naxios.get('/users')\n  .then(res => {\n    console.log(res.data);\n  });"],"names":["axios","res"],"mappings":"svBACAA,EAAM,IAAI,QAAQ,EACf,KAAKC,GAAO,CACX,QAAQ,IAAIA,EAAI,IAAI,CACxB,CAAG"}
