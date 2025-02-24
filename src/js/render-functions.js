@@ -1,5 +1,4 @@
 
-
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -37,12 +36,11 @@ function imgTemplate(img) {
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
-  
 });
 
 export function imgsTemplate(arr) {
   const markup = arr.map(imgTemplate).join('');
-  
+  lightbox.refresh();
   return markup;
   
 }
