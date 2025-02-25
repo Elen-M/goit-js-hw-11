@@ -98,6 +98,7 @@ body {
  .gallery {
      display: flex;
      flex-wrap: wrap;
+     max-width: 1440px;
      gap: 24px;
      list-style: none;
      padding: 0;

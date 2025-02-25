@@ -2,16 +2,15 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 import { searchImg } from './js/pixabay-api.js';
-import { imgsTemplate } from './js/render-functions.js';
+import { imgsTemplate, lightbox } from './js/render-functions.js';
 
 export const refs = {
     form: document.querySelector('.search-form'),
     input: document.querySelector('#image-input'),
-    button: document.querySelector('#search-button'),
     gallery: document.querySelector('.gallery')
 };
 
-refs.form.addEventListener('click', e => {
+refs.form.addEventListener('submit', e => {
     e.preventDefault();
     const query = refs.input.value.trim();
 
@@ -20,8 +19,11 @@ refs.form.addEventListener('click', e => {
   }
   refs.gallery.innerHTML = '<span class="loader"></span>';
   refs.form.reset();
+
   searchImg(query)
     .then(({ data }) => {
+      refs.gallery.innerHTML = '';
+      
       if (data.hits.length === 0) {
         iziToast.info({
           title: '',
@@ -33,16 +35,16 @@ refs.form.addEventListener('click', e => {
           maxWidth: '432px',
         });
       } else {
-        const markup = imgsTemplate(data.hits);
-        refs.gallery.innerHTML = markup;
+        refs.gallery.innerHTML = imgsTemplate(data.hits);
+        lightbox.refresh();
       }
     })
     .catch(error => {
+       refs.gallery.innerHTML = '';
       iziToast.error({
         title: 'Error',
         message: 'Something went wrong. Please try again.',
         position: 'topRight',
       });
     });
-  e.target.reset();
 });

@@ -33,14 +33,11 @@ function imgTemplate(img) {
       </ul>
 </li>`
 };
-const lightbox = new SimpleLightbox('.gallery a', {
+export const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
 
 export function imgsTemplate(arr) {
-  const markup = arr.map(imgTemplate).join('');
-  lightbox.refresh();
-  return markup;
-  
+  return arr.map(imgTemplate).join('');
 }

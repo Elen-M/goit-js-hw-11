@@ -14,4 +14,3 @@ export function searchImg(query) {
     const url = BASE_URL;
     return axios.get(url, { params })
 };  
-
